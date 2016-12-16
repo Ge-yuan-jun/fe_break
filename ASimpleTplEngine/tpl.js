@@ -21,11 +21,11 @@ let tplEngine = (tpl, data) => {
   const add = (line, js) => {
     js? (code += line.match(regJs) ? `${line}\n` : `r.push(${line});\n`) :
         (code += `r.push("${line.replace(/"/g, '\\"')}");\n`);
+    return add;
   };
 
   while (match = reg.exec(tpl)) {
-    add(tpl.slice(cursor, match.index)); // 添加非逻辑部分
-    add(match[1], true); // 添加逻辑部分 match[0] = "<%" + match[1] + "%>"
+    add(tpl.slice(cursor, match.index)).(match[1], true); // 1.添加非逻辑部分 2.添加逻辑部分 match[0] = "<%" + match[1] + "%>"(链式调用)
     cursor = match.index + match[0].length;
   }
 
