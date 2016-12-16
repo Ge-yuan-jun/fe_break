@@ -16,14 +16,16 @@ let data = {
 // let result = tpl.replace(/<%([^%>]+)?%>/g, (s0,s1) => data[s1])
 let tplEngine = (tpl, data) => {
   const reg = /<%([^%>]+)?%>/g;
+  const regJs = /(^( )?(if|for|else|switch|case|break|{|}))(.*)?/g;
   let [code, cursor, match] = ['let r = []; \n', 0, []];  // cursor的作用定位所匹配的代码的最后一节
-  const add = (line) => {
-    code += `r.push("${line.replace(/"/g, '\\"')}");\n`
-  }
+  const add = (line, js) => {
+    js? (code += line.match(regJs) ? `${line}\n` : `r.push(${line});\n`) :
+        (code += `r.push("${line.replace(/"/g, '\\"')}");\n`);
+  };
 
   while (match = reg.exec(tpl)) {
     add(tpl.slice(cursor, match.index)); // 添加非逻辑部分
-    add(match[1]); // 添加逻辑部分 match[0] = "<%" + match[1] + "%>"
+    add(match[1], true); // 添加逻辑部分 match[0] = "<%" + match[1] + "%>"
     cursor = match.index + match[0].length;
   }
 
@@ -32,4 +34,5 @@ let tplEngine = (tpl, data) => {
   code += 'return r.join("");'; // 返回结果
 
   console.log(code)
+  return new Function(code.replace(/[\r\t\n]/g, '')).apply(data);
 }
