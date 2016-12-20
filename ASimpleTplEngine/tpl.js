@@ -1,5 +1,6 @@
 /**
- * link: http://www.cnblogs.com/hustskyking/p/principle-of-javascript-template.html
+ * link1: http://www.cnblogs.com/hustskyking/p/principle-of-javascript-template.html
+ * link2: https://github.com/JuneAndGreen/treasure-box/blob/master/template_engine/string_base/src/tpl.js
  * <ul>
  *  <% for ( var i = 0; i < users.length; i++ ) { %>
  *       <li><a href="<%=users[i].url%>"><%=users[i].name%></a></li>
@@ -7,12 +8,25 @@
  * </ul>
  */
 
-const tpl = 'hi, my name is <%name%>, and i\'m <%age%> years old';
-let data = {
-  name: 'Matthew',
-  age: '20'
-}
+/**
+ * 默认的过滤器，防止注入
+ */
+const defaultFilter = {
+  escape: (str) => {
+    const escapeMap = {
+      '<': '&lt;',
+      '>': '&gt;',
+      '&': '&amp;',
+      ' ': '&nbsp',
+      '"': '&quot;',
+      "'": '&#39;',
+      '\n': '<br/>',
+      '\r': ''
+    }
 
+    return str.replace(/\<|\>|\&|\'|\"|\n|\r/g, (match) => escapeMap[match]);
+  }
+}
 // let result = tpl.replace(/<%([^%>]+)?%>/g, (s0,s1) => data[s1])
 let tplEngine = (tpl, data) => {
   const reg = /<%([^%>]+)?%>/g;
@@ -33,6 +47,5 @@ let tplEngine = (tpl, data) => {
 
   code += 'return r.join("");'; // 返回结果
 
-  console.log(code)
   return new Function(code.replace(/[\r\t\n]/g, '')).apply(data);
 }
