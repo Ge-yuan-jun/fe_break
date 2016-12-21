@@ -19,6 +19,16 @@ const parseTpl = (() => {
    */
   const doParseTpl = (content, data, filter) => {
 
+    // 初始化模板处理
+    content = content.replace(/\t/g, '  ').replace(/\n/g, '\\n').replace(/\r/g, '\\r');
+    let [out, struct] = [[], [
+      'try { var OUT = [];',
+      '', // 模板生成器占位符
+      'return OUT.join(\'\');} catch(e) { throw e; }'
+    ]];
+
+    // 返回方法传入两个参数 DATA以及FILTER
+    return new Function('DATA', 'FILTER', struct.join(''));
   }
 
   /**
