@@ -1,6 +1,6 @@
 /**
- * link1: http://www.cnblogs.com/hustskyking/p/principle-of-javascript-template.html
- * link2: https://github.com/JuneAndGreen/treasure-box/blob/master/template_engine/string_base/src/tpl.js
+ * link: http://www.cnblogs.com/hustskyking/p/principle-of-javascript-template.html
+ * let result = tpl.replace(/<%([^%>]+)?%>/g, (s0,s1) => data[s1])
  * <ul>
  *  <% for ( var i = 0; i < users.length; i++ ) { %>
  *       <li><a href="<%=users[i].url%>"><%=users[i].name%></a></li>
@@ -9,28 +9,15 @@
  */
 
 /**
- * 默认的过滤器，防止注入
+ * 解析模板
  */
-const defaultFilter = {
-  escape: (str) => {
-    const escapeMap = {
-      '<': '&lt;',
-      '>': '&gt;',
-      '&': '&amp;',
-      ' ': '&nbsp',
-      '"': '&quot;',
-      "'": '&#39;',
-      '\n': '<br/>',
-      '\r': ''
-    }
-
-    return str.replace(/\<|\>|\&|\'|\"|\n|\r/g, (match) => escapeMap[match]);
-  }
-}
-// let result = tpl.replace(/<%([^%>]+)?%>/g, (s0,s1) => data[s1])
 let tplEngine = (tpl, data) => {
+
+  // 定义正则
   const reg = /<%([^%>]+)?%>/g;
   const regJs = /(^( )?(if|for|else|switch|case|break|{|}))(.*)?/g;
+
+  // 初始化模板变量
   let [code, cursor, match] = ['let r = []; \n', 0, []];  // cursor的作用定位所匹配的代码的最后一节
   const add = (line, js) => {
     js? (code += line.match(regJs) ? `${line}\n` : `r.push(${line});\n`) :
@@ -38,14 +25,14 @@ let tplEngine = (tpl, data) => {
     return add;
   };
 
+  // 解析模板内容
   while (match = reg.exec(tpl)) {
     add(tpl.slice(cursor, match.index))(match[1], true); // 1.添加非逻辑部分 2.添加逻辑部分 match[0] = "<%" + match[1] + "%>"(链式调用)
     cursor = match.index + match[0].length;
   }
-
   add(tpl.substr(cursor, tpl.length - cursor)); // 增加代码的最后一段
 
-  code += 'return r.join("");'; // 返回结果
-
+  // 返回结果
+  code += 'return r.join("");';
   return new Function(code.replace(/[\r\t\n]/g, '')).apply(data);
 }
