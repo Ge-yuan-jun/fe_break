@@ -27,6 +27,22 @@ const parseTpl = (() => {
       'return OUT.join(\'\');} catch(e) { throw e; }'
     ]];
 
+    // 初始化模板变量
+    let vars = [];
+    Object.keys(data).forEach((name) => {
+      vars.push(`var ${name} = DATA['${name}'];`);
+    });
+    out.push(vars.join(''));
+
+    // 初始化过滤器
+    let filters = ['var FILTERS = {};'];
+    Object.keys(filter).forEach((name) => {
+      if (typeof filter[name] === 'function') {
+        filters.push(`FILTERS['${name}'] = FILTER['${name}'];`);
+      }
+    });
+    out.push(filters.join(''));
+
     // 返回方法传入两个参数 DATA以及FILTER
     return new Function('DATA', 'FILTER', struct.join(''));
   }
