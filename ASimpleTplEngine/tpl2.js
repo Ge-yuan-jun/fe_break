@@ -77,3 +77,5 @@ const parseTpl = (() => {
     }
   }
 })();
+
+export default parseTpl;
