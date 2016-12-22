@@ -8,7 +8,23 @@ const parseTpl = (() => {
   /**
    * 默认过滤器
    */
-  const defaultFilter = {};
+  const defaultFilter = {
+    // 防注入
+    escape: (str) => {
+      let escapeMap = {
+        '<': '&lt;',
+        '>': '&gt;',
+        '&': '&amp;',
+        ' ': '&nbsp;',
+        '"': '&quot;',
+        "'": '&#39;',
+        '\n': '<br/>',
+        '\r': ''
+      };
+
+      return str.replace(/\<|\>|\&|\r|\n|\s|\'|\"/g, (one) => escapeMap[one]);
+    }
+  };
 
   /**
    * 解析模板
