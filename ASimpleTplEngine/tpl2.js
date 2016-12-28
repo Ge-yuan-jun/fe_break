@@ -5,6 +5,24 @@
  */
 
 const parseTpl = (() => {
+
+  // 定义处理字符串的正则
+  const regMap = [
+    // if语句开始
+    {reg: /^if\s+(.+)/i, val: (all, condition) => { return `if (${condition}) {` }},
+    // elseif语句开始
+    {reg: /^elseif\s+(.+)/i, val: (all, condition) => { return `} else if (${condition}) {`}},
+    // else语句开始
+    {reg: /^else/i, val: '} else {'},
+    // if语句结束
+    {reg: /^\/\s*if/i, val: '}'},
+    // list语句开始
+    {reg: /^list\s+([\S]+)\s+as\s+([\S]+)/i, val: (all, arr, item) => {return `for(var _INDEX_ = 0; _INDEX_ < ${arr}.length; _INDEX_++) {var ${item}=${arr}[_INDEX_];var ${item}_index=_INDEX_;`}},
+    // list语句结束
+    {reg: /^\/\s*list/i, val: '}'},
+    // var声明语句处理
+    {reg: /^var\s+(.+)/i, val: (all, expr) => {return `var ${expr};`}}
+  ];
   /**
    * 默认过滤器
    */
@@ -59,7 +77,10 @@ const parseTpl = (() => {
     });
     out.push(filters.join(''));
 
+
+
     // 返回方法传入两个参数 DATA以及FILTER
+    struct[1] = out.join('');
     return new Function('DATA', 'FILTER', struct.join(''));
   }
 

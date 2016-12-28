@@ -1,11 +1,15 @@
 /**
  * link: http://www.cnblogs.com/hustskyking/p/principle-of-javascript-template.html
  * let result = tpl.replace(/<%([^%>]+)?%>/g, (s0,s1) => data[s1])
- * <ul>
- *  <% for ( var i = 0; i < users.length; i++ ) { %>
- *       <li><a href="<%=users[i].url%>"><%=users[i].name%></a></li>
- *  <% } %>
- * </ul>
+ * var tpl = '<% for(var i = 0; i < this.posts.length; i++) {' +　
+ *     'var post = posts[i]; %>' +
+ *     '<% if(!post.expert){ %>' +
+ *         '<span>post is null</span>' +
+ *     '<% } else { %>' +
+ *         '<a href="#"><% post.expert %> at <% post.time %></a>' +
+ *     '<% } %>' +
+ * '<% } %>';
+ * tplEngine(tpl, data);
  */
 
 /**
