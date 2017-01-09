@@ -44,6 +44,16 @@ const parseTpl = (() => {
     }
   };
 
+  /* 转换模板字符串语句 */
+  let transStm = (stmJs) => {
+    stmJs = stmJs.trim();
+    for (let item of regMap) {
+      if (item.reg.test(stmJs)) {
+        return (typeof item.val === 'function') ? stmJs.replace(item.reg, item.val) : item.val;
+      }
+    }
+  };
+
   /**
    * 解析模板
    * @param  {string} content 模板字符串
