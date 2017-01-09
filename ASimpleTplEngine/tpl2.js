@@ -87,6 +87,29 @@ const parseTpl = (() => {
     });
     out.push(filters.join(''));
 
+    let beg = 0; // 解析文段起始位置
+    let stmbeg = 0; // 表达式起始位置
+    let stmend = 0; // 表达式结束位置
+    let len = content.length;
+    let preCode = ''; // 表达式前的代码
+    let endCode = ''; // 最后一段代码
+    let stmJs = ''; // 表达式
+    while (beg < len) {
+      // 开始符
+      stmbeg = content.indexOf('{', beg);
+
+      // 在 ‘{’ 遇到转义 ‘\’ 的情况
+      while (content.charAt(stmbeg - 1) === '\\') {
+        stmbeg = content.indexOf('{', stmbeg + 1);
+      }
+
+      if (stmbeg === -1) {
+        // 到达最后一段代码
+        endCode = content.substr(beg);
+        out.push('OUT.push(\'' + endCode + '\');');
+        break;
+      }
+    }
 
 
     // 返回方法传入两个参数 DATA以及FILTER
