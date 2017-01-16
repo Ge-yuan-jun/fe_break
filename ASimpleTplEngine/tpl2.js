@@ -120,7 +120,38 @@ const parseTpl = (() => {
         // 没有结束符】
         break;
       }
-      
+
+      // 开始符之前的代码
+      preCode = content.substring(beg, stmbeg);
+
+      if (content.charAt(stmbeg - 1) === '$') {
+        // 针对变量
+        out.push(`OUT.push(\'${preCode.substr(0, preCode.length - 1)}\');`);
+        stmJs = content.substring(stmbeg + 1, stmend);
+
+        // 处理过滤器
+        let tmp = '';
+        stmJs.spilt('|').forEach((item, index) => {
+          if (index === 0) {
+            // 变量
+            tmp = item;
+          } else {
+            // 过滤器
+            let farr = item.split(':');
+            tmp = `FILTERS['${farr[0]}'](${tmp}`;
+
+            if (farr[1]) {
+              // 带变量的过滤器
+              farr[1].split(',').forEach((fitem) => {
+                tmp = `${tmp}, ${fitem}`;
+              });
+            }
+
+            tmp = `${tmp})`; // 追加结尾
+          }
+        })
+      }
+
     }
 
 
