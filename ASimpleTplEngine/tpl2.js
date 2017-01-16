@@ -109,6 +109,18 @@ const parseTpl = (() => {
         out.push('OUT.push(\'' + endCode + '\');');
         break;
       }
+
+      /* 结束符 */
+      stmend = content.indexOf('}', stmbeg);
+      while (content.charAt(stmend - 1) === '\\') {
+        stmend = content.indexOf('}', stmend + 1);
+      }
+
+      if (stmend === -1) {
+        // 没有结束符】
+        break;
+      }
+      
     }
 
 
