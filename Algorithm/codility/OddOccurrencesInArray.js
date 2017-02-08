@@ -52,3 +52,12 @@ For example, given array A such that:
          return Number(key);
      }
  }
+
+
+function solution(A) {
+    let tmp = 0, i = 0, len = A.length;
+    for (; i < len; i++) {
+        tmp = tmp ^ A[i];
+    }
+    return tmp;
+}
