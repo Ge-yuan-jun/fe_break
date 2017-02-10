@@ -1,4 +1,5 @@
 /**
+ * 利用快排实现
  * @param {number[]} nums1
  * @param {number[]} nums2
  * @return {number}
@@ -41,3 +42,27 @@ var quick_sort = function(arr) {
 }
 
 findMedianSortedArrays([1,3], [2,4])
+
+/**
+ * 利用ES5的sort方法实现
+ * @param {number[]} nums1
+ * @param {number[]} nums2
+ * @return {number}
+ */
+
+var findMedianSortedArrays = function(nums1, nums2) {
+    let arr = nums1.concat(nums2), res = 0;
+    arr = arr.sort(function(a, b) {
+      return a - b;
+    });
+    
+    let len = arr.length, floor2 = Math.floor(arr.length/2);
+
+    if (len % 2 === 1) {
+      res = arr[floor2];
+    } else {
+      res = (arr[floor2 - 1] + arr[floor2]) / 2
+    }
+    
+    return res
+};
