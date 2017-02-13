@@ -41,7 +41,7 @@ var quick_sort = function(arr) {
   return quick_sort(left).concat(mid.concat(quick_sort(right)));
 }
 
-findMedianSortedArrays([1,3], [2,4])
+
 
 
 /**
