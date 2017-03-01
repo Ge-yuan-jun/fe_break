@@ -12,6 +12,25 @@ function waterfall(parent, box) {
   var cols = Math.floor(document.documentElement.clientWidth / oBoxW); // 页面宽度
   // 设置main的宽
   oParent.style.cssText = 'width:' + oBoxW * cols + 'px; margin: 0 auto';
+
+  var hArr = []; // 存放每一列高度的数组
+  for (var i = 0; i < oBoxs.length; i++) {
+
+    if (i < cols) {      
+      hArr.push(oBoxs[i].offsetHeight);
+    } else {
+      var minH = Math.min.apply(null, hArr);
+      var index = getMinhIndex(hArr, minH);
+
+      oBoxs[i].style.position = 'absolute';
+      oBoxs[i].style.top = minH + 'px';
+      // oBoxs[i].style.left = oBoxW * indxex + 'px';
+      oBoxs[i].style.left = oBoxs[index].offsetLeft + 'px';
+
+      hArr[index] += oBoxs[i].offsetHeight;
+    }
+
+  }
 }
 
 function getByClass(parent, clsName) {
@@ -25,4 +44,12 @@ function getByClass(parent, clsName) {
   }
 
   return boxArr;
+}
+
+function getMinhIndex(arr, target) {
+  for (var i = 0; i < arr.length; i++) {
+    if (arr[i] === target) {
+      return i;
+    }
+  }
 }
