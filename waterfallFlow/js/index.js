@@ -1,5 +1,9 @@
 window.onload = function() {
   waterfall('main', 'box');
+
+  window.onscroll = function() {
+    
+  }
 }
 
 function waterfall(parent, box) {
