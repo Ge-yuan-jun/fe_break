@@ -3,7 +3,26 @@ window.onload = function() {
 
   window.onscroll = function() {
     if (checkScrollSlide()) {
+      var dataInt = mockData();
+      
+      var oParent = document.getElementById('main');
+      // 将数据渲染到当前页面的尾部
+      for (var i = 0; i < dataInt.data.length; i++) {
 
+        var oBox = document.createElement('div');
+        oBox.className = 'box';
+        oParent.appendChild(oBox);
+
+        var oPic = document.createElement('div');
+        oPic.className = 'pic';
+        oBox.appendChild(oPic);
+
+        var oImg = document.createElement('img');
+        oImg.src = dataInt.data[i].src;
+        oPic.appendChild(oImg)
+      }
+
+      waterfall('main', 'box');
     }
   }
 }
@@ -73,4 +92,21 @@ function checkScrollSlide() {
   console.log(lastBoxH <= height + scrollTop )
   
   return lastBoxH <= height + scrollTop 
+}
+
+function mockData() {
+  return {
+    data: [
+      {src: './img/0.jpg'},
+      {src: './img/1.jpg'},
+      {src: './img/0.jpg'},
+      {src: './img/1.jpg'},
+      {src: './img/0.jpg'},
+      {src: './img/1.jpg'},
+      {src: './img/0.jpg'},
+      {src: './img/1.jpg'},
+      {src: './img/0.jpg'},
+      {src: './img/1.jpg'},
+    ]
+  }
 }
