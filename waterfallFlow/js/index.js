@@ -2,7 +2,9 @@ window.onload = function() {
   waterfall('main', 'box');
 
   window.onscroll = function() {
-    
+    if (checkScrollSlide()) {
+
+    }
   }
 }
 
@@ -23,6 +25,7 @@ function waterfall(parent, box) {
     if (i < cols) {      
       hArr.push(oBoxs[i].offsetHeight);
     } else {
+      // 给剩下的元素进行定位
       var minH = Math.min.apply(null, hArr);
       var index = getMinhIndex(hArr, minH);
 
@@ -56,4 +59,18 @@ function getMinhIndex(arr, target) {
       return i;
     }
   }
+}
+
+// 检测是否具备了滚动条加载数据的条件
+function checkScrollSlide() {
+  var oParent = document.getElementById('main');
+  var oBoxs = getByClass(oParent, 'box');
+
+  var lastBoxH = oBoxs[oBoxs.length - 1].offsetTop + Math.floor(oBoxs[oBoxs.length - 1].offsetHeight / 2);
+  var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+  var height = document.documentElement.clientHeight || document.body.clientHeight;
+
+  console.log(lastBoxH <= height + scrollTop )
+  
+  return lastBoxH <= height + scrollTop 
 }
