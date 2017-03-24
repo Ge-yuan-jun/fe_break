@@ -98,11 +98,11 @@ Promise.prototype.then = function (onResolved, onRejected) {
 
   // 判断onResolved, onRejected是否是function，不是则需要重置处理(做值的穿透处理)
   onResolved = typeof onResolved === 'function' ? onResolved : function (v) { return v; };
-  onRejected = typeof onRejected === 'function' ? onRejected : function (r) { return r; };
+  onRejected = typeof onRejected === 'function' ? onRejected : function (r) { throw r; };
 
   if (self.status === 'resolved') {
     
-    promise2 = new Promise(function (resolve, reject) {
+    return promise2 = new Promise(function (resolve, reject) {
 
       setTimeout(function () {
         try {
@@ -120,9 +120,11 @@ Promise.prototype.then = function (onResolved, onRejected) {
     
     })
 
-  } else if (self.status === 'rejected') {
+  } 
+  
+  if (self.status === 'rejected') {
     
-    promise2 = new Promise(function (resolve, reject) {
+    return promise2 = new Promise(function (resolve, reject) {
 
       setTimeout(function () {
       
@@ -142,9 +144,11 @@ Promise.prototype.then = function (onResolved, onRejected) {
 
     })
 
-  } else if (self.status === ' pending') {
+  } 
+  
+  if (self.status === 'pending') {
     
-    promise2 = new Promise(function (resolve, reject) {
+    return promise2 = new Promise(function (resolve, reject) {
       self.onResolvedCallback.push(function (value) {
         
         try {
@@ -179,7 +183,6 @@ Promise.prototype.then = function (onResolved, onRejected) {
 
   }
 
-  return promise2;
 }
 
 Promise.prototype.catch = function (onRejected) {
