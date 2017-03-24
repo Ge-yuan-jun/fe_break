@@ -167,6 +167,7 @@ Promise.prototype.then = function (onResolved, onRejected) {
           
           let x = onRejected(reason);
           resolvePromise(promise2, x, resolve, reject);
+
         } catch (e) {
 
           reject(e);
@@ -194,3 +195,5 @@ Promise.deferred = Promise.defer = function () {
   })
   return dfd;
 }
+
+module.exports = Promise;

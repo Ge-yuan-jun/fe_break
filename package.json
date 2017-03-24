@@ -1,0 +1,23 @@
+{
+  "name": "fe_break",
+  "version": "0.0.1",
+  "description": "break the limit",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ge-yuan-jun/fe_break.git"
+  },
+  "keywords": [
+    "front-end",
+    "break"
+  ],
+  "author": "Matthew Ge",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ge-yuan-jun/fe_break/issues"
+  },
+  "homepage": "https://github.com/Ge-yuan-jun/fe_break#readme"
+}
