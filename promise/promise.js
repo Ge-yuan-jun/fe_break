@@ -7,23 +7,36 @@ function Promise (executor) {
   this.onRejectedCallback = []; // promise reject时的回调函数，可能有多个回调
 
   function resolve (value) {
-    if (self.status === 'pending') {
-      self.status = 'resolved';
-      self.data = value;
-      for (let i = 0; i < self.onResolvedCallback.length; i++) {
-        self.onResolvedCallback[i](value)
-      }
+
+    if (value instanceof Promise) {
+      return value.then(resolve, reject);
     }
+
+    // 保证异步调用执行
+    setTimeout(function () {
+      if (self.status === 'pending') {
+        self.status = 'resolved';
+        self.data = value;
+        for (let i = 0; i < self.onResolvedCallback.length; i++) {
+          self.onResolvedCallback[i](value)
+        }
+      }
+    }, 0)
+
   }
 
   function reject (reason) {
-    if (self.status === 'pending') {
-      self.status = 'rejected';
-      self.data = reason;
-      for (let i = 0; i < self.onRejectedCallback.length; i++) {
-        self.onRejectedCallback[i](reason);
+
+    setTimeout(function () {
+      if (self.status === 'pending') {
+        self.status = 'rejected';
+        self.data = reason;
+        for (let i = 0; i < self.onRejectedCallback.length; i++) {
+          self.onRejectedCallback[i](reason);
+        }
       }
-    }
+    }, 0)
+
   }
 
   try {
@@ -34,28 +47,150 @@ function Promise (executor) {
 
 } 
 
+function resolvePromise (promise2, x, resolve, reject) {
+  let then,
+    thenCalledOrThrow = false;
+
+  if (promise2 === x) {
+    return reject(new TypeError('Chaining cycle detected for promise!'));
+  }
+
+  if (x instanceof Promise) {
+    if (x.status === 'pending') {
+      x.then(function (v) {
+        resolvePromise(promise2, v, resolve, reject)
+      }, reject);
+    } else {
+      x.then(resolve, reject);
+    }
+    return;
+  }
+
+  if ((x !== null) && ((typeof x === 'object') || (typeof x === 'function'))) {
+    try {
+      then = x.then;
+      if (typeof then === 'function') {
+        then.call(x, function rs (y) {
+          if (thenCalledOrThrow) return;
+          thenCalledOrThrow = true;
+          return resolvePromise(promise2, y, resolve, reject);
+        }, function rj (r) {
+          if (thenCalledOrThrow) return;
+          thenCalledOrThrow = true;
+          return reject(r);
+        })
+      } else {
+        resolve(x);
+      }
+    } catch (e) {
+      if (thenCalledOrThrow) return;
+      thenCalledOrThrow = true;
+      return reject(e);
+    }
+  } else {
+    resolve(x);
+  }
+}
+
 Promise.prototype.then = function (onResolved, onRejected) {
   const self = this;
   let promise2;
 
-  // 判断onResolved, onRejected是否是function，不是则需要重置处理
-  onResolved = typeof onResolved === 'function' ? onResolved : function (v) {};
-  onRejected = typeof onRejected === 'function' ? onRejected : function (r) {};
+  // 判断onResolved, onRejected是否是function，不是则需要重置处理(做值的穿透处理)
+  onResolved = typeof onResolved === 'function' ? onResolved : function (v) { return v; };
+  onRejected = typeof onRejected === 'function' ? onRejected : function (r) { return r; };
 
   if (self.status === 'resolved') {
+    
     promise2 = new Promise(function (resolve, reject) {
 
+      setTimeout(function () {
+        try {
+        
+          let x = onResolved(self.data);
+
+          resolvePromise(promise2, x, resolve, reject);
+
+        } catch (e) {
+          
+          reject(e);
+        
+        }
+      })
+    
     })
+
   } else if (self.status === 'rejected') {
+    
     promise2 = new Promise(function (resolve, reject) {
 
+      setTimeout(function () {
+      
+        try {
+
+          let x = onRejected(self.data);
+
+          resolvePromise(promise2, x, resolve, reject);
+
+        } catch (e) {
+
+          reject(e);
+        
+        }
+
+      })
+
     })
+
   } else if (self.status === ' pending') {
+    
     promise2 = new Promise(function (resolve, reject) {
+      self.onResolvedCallback.push(function (value) {
+        
+        try {
 
+          let x = onResolved(value);
+
+          resolvePromise(promise2, x, resolve, reject);
+
+        } catch (e) {
+
+          reject(e);
+
+        }
+
+      });
+
+      self.onRejectedCallback.push(function (reason) {
+        
+        try {
+          
+          let x = onRejected(reason);
+          resolvePromise(promise2, x, resolve, reject);
+        } catch (e) {
+
+          reject(e);
+
+        }
+
+      })
     })
+
   }
 
   return promise2;
+}
 
+Promise.prototype.catch = function (onRejected) {
+  return this.then(null, onRejected);
+}
+
+// for test usage
+Promise.deferred = Promise.defer = function () {
+  let dfd = {};
+  dfd.promise = new Promise(function (resolve, reject) {
+    dfd.resolve = resolve;
+    dfd.reject = reject;
+  })
+  return dfd;
 }
