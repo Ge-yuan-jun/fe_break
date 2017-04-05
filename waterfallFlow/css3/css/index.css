@@ -1,0 +1,36 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+#main {
+  -webkit-column-width: 202px;
+  -moz-column-width: 202px;
+  -o-column-width: 202px;
+  -ms-column-width: 202px;
+  column-width: 202px;
+
+  /*-webkit-column-count: 4;
+  -moz-column-count: 4;
+  -o-column-count: 4;
+  -ms-column-count: 4;
+  column-count: 4;*/
+}
+
+.box {
+  padding: 15px 0 0 15px;
+}
+
+.pic {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 0 5px #ccc;
+  width: 165px;
+}
+
+.pic img {
+  display: block;
+  width: 165px;
+  height: auto;
+}
