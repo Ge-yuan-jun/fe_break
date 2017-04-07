@@ -34,6 +34,7 @@ Function.prototype.bind = Function.prototype.bind || function (context) {
     const me = this;
     const args = Array.prototype.slice.call(arguments, 1);
 
+    // 利用一个空对象做中介，使bound继承this，又不会影响this值原型上的属性
     const F = function () {};
     F.prototype = this.prototype;
 
