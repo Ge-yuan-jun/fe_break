@@ -7,3 +7,8 @@ if you have already installed `promises-aplus-tests`,just ignore the step 1.
 
 1. `npm install -g promises-aplus-tests`
 2. `promises-aplus-tests ./promise/promise.js`
+
+### promise异步编程
+
+- [原题](https://gist.github.com/allenm/5e22379cb8055f4402bcd417f682ae8f)
+- [聪聪的解答](https://gist.github.com/zzzzc/02019c2158a2c08b646c23fdff7efeaf) 
