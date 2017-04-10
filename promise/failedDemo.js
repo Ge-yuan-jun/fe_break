@@ -1,3 +1,12 @@
+/**
+ * 此代码问题有如下：
+ * 1. const self = getUserProfile
+ * 函数内部引用本身，如果存在闭包，可能有问题，在原型链上访问不到getUserProfile
+ * 
+ * 2. requestUserProfile(...
+ * 直接调用requestUserProfile存在一个问题，如果全局中不存在这样的变量呢？
+ * @param {*} uid 
+ */
 
 var getUserProfile = function(uid){
     const self = getUserProfile;
