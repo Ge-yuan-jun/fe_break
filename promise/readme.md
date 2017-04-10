@@ -12,3 +12,5 @@ if you have already installed `promises-aplus-tests`,just ignore the step 1.
 
 - [原题](https://gist.github.com/allenm/5e22379cb8055f4402bcd417f682ae8f)
 - [聪聪的解答](https://gist.github.com/zzzzc/02019c2158a2c08b646c23fdff7efeaf) 
+- [我的解答](https://github.com/Ge-yuan-jun/fe_break/blob/master/promise/demo.js)
+- [更好的解答](https://github.com/Ge-yuan-jun/fe_break/blob/master/promise/betterDemo.js)
