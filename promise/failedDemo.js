@@ -19,7 +19,7 @@ var getUserProfile = function(uid){
                     const profile = profileList.find( p => p && p.uid === item.uid);
                     profile ? item.resolve(profile) : item.reject({uid: profile})
                 })
-            })
+            }) 
     }
 
     const reset = () => {
