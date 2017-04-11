@@ -14,5 +14,4 @@ if you have already installed `promises-aplus-tests`,just ignore the step 1.
 - [聪聪的解答](https://gist.github.com/zzzzc/02019c2158a2c08b646c23fdff7efeaf) 
 - [我的解答](https://github.com/Ge-yuan-jun/fe_break/blob/master/promise/demo.js)
 - [有问题的解答](https://github.com/Ge-yuan-jun/fe_break/blob/master/promise/failedDemo.js)
-- [尝试利用class + promise的解答（一）](https://github.com/Ge-yuan-jun/fe_break/blob/master/promise/class_promise1.js)
-- [尝试利用class + promise的解答（二）](https://github.com/Ge-yuan-jun/fe_break/blob/master/promise/class_promise2.js)
+- [尝试利用class + promise的解答](https://github.com/Ge-yuan-jun/fe_break/blob/master/promise/class_promise1.js)
