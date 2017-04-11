@@ -111,7 +111,6 @@ class RequestSender {
     }
 
     add (id) {
-        // let { storage } = this;
         // 利用对象key不重复的特点去重
         this.storage[id] = 0;
         this.ready();
