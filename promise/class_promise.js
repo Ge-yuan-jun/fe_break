@@ -1,6 +1,9 @@
+let count = 0;
+
 var requestUserProfile = function(uidList){  // uidList 是一个数组，最大接受 100 个 uid
   // 这个方法的实现不能修改
-  
+  console.log('--count--', count++);
+  console.log(uidList.length);  
   /** 先去重 */
   var uidList = uidList || [];
   var _tmp = {};
@@ -79,7 +82,7 @@ class RequestSender {
     ready () {
         let { delay, max, storage } = this;
 
-        if (Object.keys(storage).length > 100) {
+        if (Object.keys(storage).length >= 100) {
             this.launch();
             return false;
         } else if (!this.timer) {
@@ -156,7 +159,7 @@ setTimeout(function(){
 setTimeout(function(){
   test(7,-1);
   test(8,5);
-},200);
+},2000);
 
 // test(9,2);
 
