@@ -42,7 +42,7 @@ Function.prototype.bind = Function.prototype.bind || function (context) {
         const innerArgs = Array.prototype.slice.call(arguments);
         const finalArgs = args.concat(innerArgs);
 
-        return self.apply(this instanceof F ? this : context || this, finalArgs);
+        return me.apply(this instanceof F ? this : context || this, finalArgs);
     }
 
     bound.prototype = new F();
