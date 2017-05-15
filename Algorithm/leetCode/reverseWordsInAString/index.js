@@ -10,6 +10,6 @@
  * @returns {string}
  */
 var reverseWords = function(str) {
-    return str.replace(/ +/ig,' ').replace(/^ /,'').replace(/ $/, '').split(' ').reverse().join(' '); 
+    return str.replace(/\s+/ig,' ').replace(/(^\s*)|(\s*$)/g,"").split(' ').reverse().join(' '); 
 };
 
