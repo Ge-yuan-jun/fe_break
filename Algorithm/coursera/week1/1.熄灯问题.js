@@ -2,12 +2,12 @@
  * @Author: Ge.Yuanjun 
  * @Date: 2017-08-08 10:23:12 
  * @Last Modified by: Ge.Yuanjun
- * @Last Modified time: 2017-08-09 11:43:26
+ * @Last Modified time: 2017-08-09 11:55:33
  */
 
 /**
  * 
- * @param {Array} puzzle 6行8列数组 
+ * @param {Array} puzzle 5行6列数组 
  * @param {Array} press 6行8列数组
  */
 
