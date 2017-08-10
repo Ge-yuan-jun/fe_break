@@ -10,9 +10,12 @@ let destroyedNum, row, column, maxDestroyedNum
 /**
  * 输入的稻草位置进行排序
  */
-const dotSort = () => {
-
-}
+const dotSort = (plants) => plants.sort((a, b) => {
+  if (a.x == b.x) {
+    return a.y > b.y
+  }
+  return a.x > a.y
+})
 
 const dotSearch = () => {
 
@@ -23,7 +26,10 @@ const dotSearch = () => {
  */
 const serachPath = (secPlant, distanceX, distanceY) => {
   let steps = 2，
-    plant = { x, y }
+  plant = {
+    x,
+    y
+  }
 
   plant.x = secPlant.x + distanceX
   plant.y = secPlant.y + distanceY
@@ -53,7 +59,7 @@ const findMax = () => {
       distanceX = plants[j].x - plants[i].x
       distanceY = plants[j].y - plants[j].y
       previousX = plants[i].x - distanceX
-      previousY = plants[i].y - distanceY 
+      previousY = plants[i].y - distanceY
 
       /**
        * 第一个点前面一个点在稻田里面
@@ -91,7 +97,7 @@ const findMax = () => {
       if (maxDestroyedNum == 2) {
         maxDestroyedNum = 0
       }
-      
+
       console.log(maxDestroyedNum)
     }
   }
