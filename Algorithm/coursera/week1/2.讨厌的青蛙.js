@@ -17,8 +17,29 @@ const dotSort = (plants) => plants.sort((a, b) => {
   return a.x > a.y
 })
 
-const dotSearch = () => {
+const dotSearch = (plants, plant) => {
+  let start = 0,
+    end = plants.length
 
+  while (start < end) {
+    let middle = Math.floor(end/2)
+     
+    if (plants['middle']['x'] == plant.x && plants['middle']['y'] == plant.y) {
+      return true
+    }
+    if (plant.x < plants['middle']['x']) {
+      end = middle - 1
+    } else if (plant.x > plants['middle']['x']) {
+      start = middle + 1
+    } else {
+      if (plant.y < plants['middle']['y']) {
+        end = middle - 1      
+      } else {
+        start = middle + 1
+      }
+    } 
+  }
+  return false
 }
 
 /**
