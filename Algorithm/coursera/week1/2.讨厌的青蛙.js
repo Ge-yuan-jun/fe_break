@@ -5,7 +5,7 @@
  * maxDestroyedNum: 被破坏最多的稻草数目
  */
 
-let destroyedNum, row, column, maxDestroyedNum
+let destroyedNum, row = 6, column = 7, maxDestroyedNum
 
 /**
  * 输入的稻草位置进行排序
