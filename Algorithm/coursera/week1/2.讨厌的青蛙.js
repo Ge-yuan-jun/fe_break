@@ -5,7 +5,24 @@
  * maxDestroyedNum: 被破坏最多的稻草数目
  */
 
-let destroyedNum, row = 6, column = 7, maxDestroyedNum
+let destroyedNum = 14, row = 6, column = 7, maxDestroyedNum,
+
+plants = [
+  {x: 2, y: 1},
+  {x: 6, y: 6},
+  {x: 4, y: 2},
+  {x: 2, y: 5},
+  {x: 2, y: 6},
+  {x: 2, y: 7},
+  {x: 3, y: 4},
+  {x: 6, y: 1},
+  {x: 6, y: 2},
+  {x: 2, y: 3},
+  {x: 6, y: 3},
+  {x: 6, y: 4},
+  {x: 6, y: 5},
+  {x: 6, y: 7}
+]
 
 /**
  * 输入的稻草位置进行排序
@@ -22,8 +39,10 @@ const dotSearch = (plants, plant) => {
     end = plants.length
 
   while (start < end) {
-    let middle = Math.floor(end/2)
-     
+    console.log('start', start)
+    console.log('end', end)
+    let middle = Math.floor((start + end)/2)
+    
     if (plants['middle']['x'] == plant.x && plants['middle']['y'] == plant.y) {
       return true
     }
@@ -46,16 +65,17 @@ const dotSearch = (plants, plant) => {
  * 判断从第二点开始，步长为distanceX,distanceY，那么最多能走几步
  */
 const serachPath = (secPlant, distanceX, distanceY) => {
-  let steps = 2，
+  let steps = 2,
   plant = {
-    x,
-    y
+    x: undefined,
+    y: undefined
   }
 
   plant.x = secPlant.x + distanceX
   plant.y = secPlant.y + distanceY
 
   while (plant.x <= row && plant.x >= 1 && plant.y <= column && plant.y >= 1) {
+
     if (!dotSearch(plants, plant)) {
       steps = 0
       break
@@ -76,7 +96,7 @@ const findMax = () => {
   let steps
 
   for (let i = 0; i < destroyedNum - 2; i++) {
-    for (let j = i + 1; j < n; j++) {
+    for (let j = i + 1; j < destroyedNum; j++) {
       distanceX = plants[j].x - plants[i].x
       distanceY = plants[j].y - plants[j].y
       previousX = plants[i].x - distanceX
@@ -97,11 +117,11 @@ const findMax = () => {
        * 所以，应该认为本次选取的第一点必然是不成立的，
        * 那么取下一个点作为第一点再试
        */
-      if (plants[i].x + (maxDestroyedNum - 1) * distanceX > r) {
+      if (plants[i].x + (maxDestroyedNum - 1) * distanceX > row) {
         break
       }
 
-      previousY = plants[i].y + (max - 1) * distanceY
+      previousY = plants[i].y + (maxDestroyedNum - 1) * distanceY
       /**
        * y 方向过早越界了，应换一个点作为第二点再试
        */
@@ -123,3 +143,5 @@ const findMax = () => {
     }
   }
 }
+
+findMax()
