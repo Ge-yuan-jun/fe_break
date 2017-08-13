@@ -39,19 +39,18 @@ const dotSearch = (plants, plant) => {
     end = plants.length
 
   while (start < end) {
-    console.log('start', start)
-    console.log('end', end)
     let middle = Math.floor((start + end)/2)
-    
-    if (plants['middle']['x'] == plant.x && plants['middle']['y'] == plant.y) {
+    console.log('middle', middle)
+    console.log(plants[middle])
+    if (plants[middle]['x'] == plant.x && plants[middle]['y'] == plant.y) {
       return true
     }
-    if (plant.x < plants['middle']['x']) {
+    if (plant.x < plants[middle]['x']) {
       end = middle - 1
-    } else if (plant.x > plants['middle']['x']) {
+    } else if (plant.x > plants[middle]['x']) {
       start = middle + 1
     } else {
-      if (plant.y < plants['middle']['y']) {
+      if (plant.y < plants[middle]['y']) {
         end = middle - 1      
       } else {
         start = middle + 1
