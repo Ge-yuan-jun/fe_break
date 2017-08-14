@@ -5,7 +5,7 @@
  * maxDestroyedNum: 被破坏最多的稻草数目
  */
 
-let destroyedNum = 14, row = 6, column = 7, maxDestroyedNum,
+let destroyedNum = 14, row = 6, column = 7, maxDestroyedNum = 2,
 
 plants = [
   {x: 2, y: 1},
@@ -36,11 +36,10 @@ const dotSort = (plants) => plants.sort((a, b) => {
 
 const dotSearch = (plants, plant) => {
   let start = 0,
-    end = plants.length
- 
+    end = plants.length - 1
+  
   while (start < end) {
     let middle = Math.floor((start + end)/2)
-
     if (plants[middle]['x'] == plant.x && plants[middle]['y'] == plant.y) {
       return true
     }
@@ -54,7 +53,7 @@ const dotSearch = (plants, plant) => {
       } else {
         start = middle + 1
       }
-    } 
+    }
   }
   return false
 }
@@ -73,7 +72,6 @@ const serachPath = (secPlant, distanceX, distanceY) => {
   plant.y = secPlant.y + distanceY
 
   while (plant.x <= row && plant.x >= 1 && plant.y <= column && plant.y >= 1) {
-
     if (!dotSearch(plants, plant)) {
       steps = 0
       break
@@ -82,7 +80,7 @@ const serachPath = (secPlant, distanceX, distanceY) => {
     plant.y += distanceY
     steps++
   }
-
+  
   return steps
 }
 
