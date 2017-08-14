@@ -29,19 +29,18 @@ plants = [
  */
 const dotSort = (plants) => plants.sort((a, b) => {
   if (a.x == b.x) {
-    return a.y > b.y
+    return a.y - b.y
   }
-  return a.x > a.y
+  return a.x - b.x
 })
 
 const dotSearch = (plants, plant) => {
   let start = 0,
     end = plants.length
-
+ 
   while (start < end) {
     let middle = Math.floor((start + end)/2)
-    console.log('middle', middle)
-    console.log(plants[middle])
+
     if (plants[middle]['x'] == plant.x && plants[middle]['y'] == plant.y) {
       return true
     }
@@ -137,10 +136,9 @@ const findMax = () => {
       if (maxDestroyedNum == 2) {
         maxDestroyedNum = 0
       }
-
-      console.log(maxDestroyedNum)
     }
   }
+  console.log('maxDestroyedNum', maxDestroyedNum)  
 }
-
+plants = dotSort(plants)
 findMax()
