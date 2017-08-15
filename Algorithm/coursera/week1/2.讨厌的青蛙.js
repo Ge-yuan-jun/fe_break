@@ -67,7 +67,7 @@ const serachPath = (secPlant, distanceX, distanceY) => {
     x: undefined,
     y: undefined
   }
-
+  
   plant.x = secPlant.x + distanceX
   plant.y = secPlant.y + distanceY
 
@@ -76,6 +76,7 @@ const serachPath = (secPlant, distanceX, distanceY) => {
       steps = 0
       break
     }
+
     plant.x += distanceX
     plant.y += distanceY
     steps++
@@ -92,9 +93,9 @@ const findMax = () => {
   let steps
 
   for (let i = 0; i < destroyedNum - 2; i++) {
-    for (let j = i + 1; j < destroyedNum; j++) {
+    for (let j = i + 1; j < destroyedNum - 1; j++) {
       distanceX = plants[j].x - plants[i].x
-      distanceY = plants[j].y - plants[j].y
+      distanceY = plants[j].y - plants[i].y
       previousX = plants[i].x - distanceX
       previousY = plants[i].y - distanceY
 
