@@ -37,5 +37,33 @@ function solution(A) {
 
   return min
 }
+/**
+ * 上面是我自己想的解决方法，尽管通过了全部测试，但代码仍存在问题（代码量等等）
+ */
+
+function solution(A) {
+  let len = A.length
+  if (!len) return 0
+  
+  let minDiff = Number.POSITIVE_INFINITY,
+  sumLeft = 0,
+  sumRight = A.reduce((x, y) => x+y, 0),
+  i = 0
+
+  while (i < len -1) {
+    const el = A[i]
+    sumLeft += A[i]
+    sumRight -= A[i]
+
+    const diff = Math.abs(sumRight - sumLeft)
+
+    if (minDiff > diff) {
+      minDiff = diff
+    }
+
+    i++
+  }
+  return minDiff
+} 
 
 console.log(solution([3, 1]))
