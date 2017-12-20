@@ -18,20 +18,24 @@
     canvas.height = 600
     const context = canvas.getContext('2d')
 
-    context.beginPath()
-    context.moveTo(300, 100)
-    context.lineTo(500, 100)
-    context.lineTo(500, 300)
-    context.lineTo(300, 300)
-    context.lineTo(300, 100)
-    context.closePath()
-    
-    context.fillStyle = "yellow"
-    context.lineWidth = 5
-    context.strokeStyle = 'blue'
+    drawRect(context, 200, 100, 100, 100, 'yellow', 5, 'blue')
+  }
 
-    context.fill()
-    context.stroke()
+  const drawRect = (cxt, x, y, width, height, fillColor, borderWidth, borderColor) => {
+    cxt.beginPath()
+    cxt.moveTo(x, y)
+    cxt.lineTo(x + width, y)
+    cxt.lineTo(x + width, y + height)
+    cxt.lineTo(x, y + height)
+    cxt.lineTo(x, y)
+    cxt.closePath()
+
+    cxt.lineWidth = borderWidth
+    cxt.strokeStyle = borderColor
+    cxt.fillStyle = fillColor
+
+    cxt.fill()
+    cxt.stroke()
   }
 </script>
 </html>
