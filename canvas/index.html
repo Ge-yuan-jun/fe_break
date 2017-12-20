@@ -18,36 +18,37 @@
     canvas.height = 600
     const context = canvas.getContext('2d')
 
-    context.beginPath()
-    context.rect(0, 0, 800, 600)
-    context.fillStyle = "#aa9033"
-
-    context.fill()
+    context.lineWidth = 50
+    context.strokeStyle = '#1baaaa'
 
     context.beginPath()
-    for (var i = 0; i <= 20; i++) {
-      drawRect(context, 200 + 10 * i, 100 + 10 * i, 400 - 20 * i, 400 - 20 * i, 'white')
-      drawRect(context, 205 + 10 * i, 105 + 10 * i, 390 - 20 * i, 390 - 20 * i, 'black')
-    }
-
-    context.beginPath()
-    context.rect(395, 295, 5, 5)
-    context.fill = 'black'
-    context.lineWidth = 5
-
-    context.fill()
+    context.moveTo(100, 100)
+    context.lineTo(700, 100)
+    context.lineCap = 'butt'
     context.stroke()
-  }
 
-  const drawRect = (cxt, x, y, width, height, borderColor) => {
-    cxt.beginPath()
-    cxt.rect(x, y, width, height)
-    cxt.closePath()
+    context.beginPath()
+    context.moveTo(100, 300)
+    context.lineTo(700, 300)
+    context.lineCap = 'round'
+    context.stroke()
 
-    cxt.lineWidth = 5
-    cxt.strokeStyle = borderColor
+    context.beginPath()
+    context.moveTo(100, 500)
+    context.lineTo(700, 500)
+    context.lineCap = 'square'
+    context.stroke()
 
-    cxt.stroke()
+    context.lineWidth = 3
+    context.strokeStyle = 'black'
+
+    context.beginPath()
+    context.moveTo(100, 0)
+    context.lineTo(100, 600)
+    context.moveTo(700, 0)
+    context.lineTo(700, 600)
+    context.stroke()
+
   }
 </script>
 </html>
