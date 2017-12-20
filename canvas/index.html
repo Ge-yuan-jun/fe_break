@@ -7,9 +7,31 @@
   <title>canvas-starter</title>
 </head>
 <body>
-  <canvas id="canvas" style="border: 1px solid #eee; display: block; margin: 50px auto;">
+  <canvas id="canvas" style="border: 1px solid #000; display: block; margin: 50px auto;">
     呀，你的浏览器不支持啊，要不换个？
   </canvas>
 </body>
-<script></script>
+<script>
+  window.onload = function () {
+    const canvas = document.getElementById('canvas')
+    canvas.width = 800
+    canvas.height = 600
+    const context = canvas.getContext('2d')
+
+    context.beginPath()
+    context.moveTo(300, 100)
+    context.lineTo(500, 100)
+    context.lineTo(500, 300)
+    context.lineTo(300, 300)
+    context.lineTo(300, 100)
+    context.closePath()
+    
+    context.fillStyle = "yellow"
+    context.lineWidth = 5
+    context.strokeStyle = 'blue'
+
+    context.fill()
+    context.stroke()
+  }
+</script>
 </html>
