@@ -19,34 +19,29 @@
     const context = canvas.getContext('2d')
 
     context.lineWidth = 50
-    context.strokeStyle = '#1baaaa'
 
     context.beginPath()
     context.moveTo(100, 100)
-    context.lineTo(700, 100)
-    context.lineCap = 'butt'
+    context.lineTo(300, 300)
+    context.lineTo(100, 500)
+    context.lineJoin = 'mitt'
+    context.strokeStyle = 'red'
     context.stroke()
 
     context.beginPath()
-    context.moveTo(100, 300)
+    context.moveTo(300, 100)
+    context.lineTo(500, 300)
+    context.lineTo(300, 500)
+    context.lineJoin = 'bevel'
+    context.strokeStyle = 'blue'
+    context.stroke()
+
+    context.beginPath()
+    context.moveTo(500, 100)
     context.lineTo(700, 300)
-    context.lineCap = 'round'
-    context.stroke()
-
-    context.beginPath()
-    context.moveTo(100, 500)
-    context.lineTo(700, 500)
-    context.lineCap = 'square'
-    context.stroke()
-
-    context.lineWidth = 3
+    context.lineTo(500, 500)
+    context.lineJoin = 'round'
     context.strokeStyle = 'black'
-
-    context.beginPath()
-    context.moveTo(100, 0)
-    context.lineTo(100, 600)
-    context.moveTo(700, 0)
-    context.lineTo(700, 600)
     context.stroke()
 
   }
