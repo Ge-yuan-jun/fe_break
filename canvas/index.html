@@ -18,32 +18,20 @@
     canvas.height = 600
     const context = canvas.getContext('2d')
 
-    context.lineWidth = 50
+    context.rect(200, 100, 400, 400)
 
-    context.beginPath()
-    context.moveTo(100, 100)
-    context.lineTo(300, 300)
-    context.lineTo(100, 500)
-    context.lineJoin = 'mitt'
-    context.strokeStyle = 'red'
-    context.stroke()
+    // 添加渐变线
+    const grd = context.createLinearGradient(200, 300, 600, 300)
 
-    context.beginPath()
-    context.moveTo(300, 100)
-    context.lineTo(500, 300)
-    context.lineTo(300, 500)
-    context.lineJoin = 'bevel'
-    context.strokeStyle = 'blue'
-    context.stroke()
+    // 添加颜色断点
+    grd.addColorStop(0, 'black')
+    grd.addColorStop(0.5, 'white')
+    grd.addColorStop(1, 'black')
 
-    context.beginPath()
-    context.moveTo(500, 100)
-    context.lineTo(700, 300)
-    context.lineTo(500, 500)
-    context.lineJoin = 'round'
-    context.strokeStyle = 'black'
-    context.stroke()
+    // 应用渐变
+    context.fillStyle = grd
 
+    context.fill()
   }
 </script>
 </html>
