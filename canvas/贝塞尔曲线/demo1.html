@@ -4,11 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>切点弧线</title>
+  <title>二次贝塞尔曲线</title>
   <style>
-      body { background: url("../assets/bg3.jpg") repeat; }
-      #canvas { border: 1px solid #aaa; display: block; margin: 50px auto; }
-    </style>
+    body { background: url("../assets/bg3.jpg") repeat; }
+    #canvas { border: 1px solid #aaa; display: block; margin: 50px auto; }
+  </style>
 </head>
 <body>
   <div id="canvas-wrap">
@@ -26,26 +26,12 @@
     context.fillStyle = "#fff"
     context.fillRect(0, 0, 800, 600)
 
-    drawArcTo(context, 200, 100, 600, 100, 600, 400, 100)
-  }
-
-  function drawArcTo (ctx, x0, y0, x1, y1, x2, y2, r) {
-    ctx.beginPath()
-    ctx.moveTo(x0, y0)
-    ctx.arcTo(x1, y1, x2, y2, r)
-
-    ctx.lineWidth = 6
-    ctx.strokeStyle = "red"
-    ctx.stroke()
-
-    ctx.beginPath()
-    ctx.moveTo(x0, y0)
-    ctx.lineTo(x1, y1)
-    ctx.lineTo(x2, y2)
-
-    ctx.lineWidth = 1
-    ctx.strokeStyle = "#0088AA"
-    ctx.stroke()
+    context.lineWidth = 6
+    context.strokeStyle = "#333"
+    context.beginPath()
+    context.moveTo(100, 400)
+    context.quadraticCurveTo(256, 43, 458, 336)
+    context.stroke()
   }
 </script>
 </html>
