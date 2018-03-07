@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>标准圆弧</title>
+  <style>
+    body { background: url("./bg3.jpg") repeat; }
+    #canvas { border: 1px solid #aaa; display: block; margin: 50px auto; }
+  </style>
+</head>
+<body>
+  <div id="canvas-wrap">
+    <canvas id="canvas">
+      你的浏览器居然不支持 canvas ？ 赶紧换一个吧！！
+    </canvas>
+  </div>
+</body>
+<script>
+  window.onload = function () {
+    var canvas = document.getElementById("canvas")
+    canvas.width = 800
+    canvas.height = 600
+    var context = canvas.getContext("2d")
+    context.fillStyle = "#FFF"
+    context.fillRect(0, 0, 800, 600)
+
+    drawRoundRect(context, 200, 100, 400, 400, 50)
+    context.strokeStyle = "#0078AA"
+    context.stroke()
+  }
+
+  function drawRoundRect (ctx, x, y, width, height, radius) {
+    ctx.beginPath()
+
+    ctx.arc(x + radius, y + radius, radius, Math.PI, Math.PI * 3/ 2)
+    ctx.lineTo(width - radius + x, y)
+    ctx.arc(width - radius + x, radius + y, radius, Math.PI * 3 / 2, Math.PI * 2)
+    ctx.lineTo(width + x, height + y - radius)
+    ctx.arc(width + x - radius, height + y - radius, radius, 0, Math.PI / 2)
+    ctx.lineTo(radius + x, height + y)
+    ctx.arc(radius + x, height + y -radius, radius, Math.PI / 2, Math.PI)
+    ctx.closePath()
+  }
+</script>
+</html>
