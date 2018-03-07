@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- 标准圆弧示例 -->
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -27,8 +28,20 @@
     context.fillRect(0, 0, 800, 600)
 
     drawRoundRect(context, 200, 100, 400, 400, 50)
+    context.fillStyle = "#ccbfb4"
     context.strokeStyle = "#0078AA"
     context.stroke()
+    context.fill()
+
+    for (var i = 1; i <= 4; i++) {
+      for (var j = 1; j <= 4; j++) {
+        drawRoundRect(context, 200 + 16 * i + 80 * (i - 1), 100 + 16 * j + 80 * (j - 1), 80, 80, 5)
+        context.fillStyle = "#ccbfb4"
+        context.strokeStyle = "#0078aa"
+        context.stroke()
+        context.fill()
+      }
+    }
   }
 
   function drawRoundRect (ctx, x, y, width, height, radius) {
