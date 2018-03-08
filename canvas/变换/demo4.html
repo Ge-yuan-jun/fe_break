@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>矩阵变换</title>
+  <style>
+    body { background: url("../assets/bg3.jpg") repeat; }
+    #canvas { border: 1px solid #aaa; display: block; margin: 50px auto; }
+  </style>
+</head>
+<body>
+  <div id="canvas-wrap">
+    <canvas id="canvas">
+      你的浏览器居然不支持 canvas ？ 赶紧换一个吧！！
+    </canvas>
+  </div>   
+</body>
+<script>
+  window.onload = function () {
+    var canvas = document.getElementById('canvas')
+    canvas.width = 800
+    canvas.height = 600
+    var context = canvas.getContext('2d')
+    context.fillStyle = '#fff'
+    context.fillRect(0, 0, 800, 600)
+
+    context.fillStyle = 'yellow'
+    context.strokeStyle = '#00AAAA'
+    context.lineWidth = 5
+
+    context.save()
+
+    // 平移至(300, 200)
+    context.transform(1, 0, 0, 1, 300, 200)
+
+    // 水平放大2倍，垂直方向放大 1.5 倍
+    context.transform(2, 0, 0, 1.5, 0, 0)
+
+    // 水平方向向右倾斜宽度 10%，垂直方向向上倾斜高度 10% 的距离
+    context.transform(1, -0.1, 0.1, 1, 0, 0)
+
+    context.fillRect(0, 0, 200, 200)
+    context.strokeReact(0, 0, 200, 200)
+    context.restore()
+  }
+</script>
+</html>
