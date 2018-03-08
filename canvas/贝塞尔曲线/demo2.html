@@ -1,0 +1,119 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>XP 壁纸</title>
+  <style>
+    body { background: url('../assets/bg3.jpg') repeat; }
+    #canvas { border: 1px solid #aaa; display: block; margin: 50px auto }
+  </style>
+</head>
+<body>
+  <div id="canvas-wrap">
+    <canvas id="canvas">
+      你的浏览器居然不支持 Canvas ？赶紧换一个吧！！
+    </canvas>
+  </div>
+</body>
+<script>
+  window.onload = function () {
+    var canvas = document.getElementById('canvas')
+    canvas.width = 800
+    canvas.height = 600
+    var context = canvas.getContext('2d')
+    context.fillStyle = '#fff'
+    context.fillRect(0, 0, 800, 600)
+
+    drawPrairie(context)
+    drawSky(context)
+    for (var i = 0; i < 5; i++) {
+      var x0 = 500 * Math.random() + 50
+      var y0 = 200 * Math.random() + 50
+      var c0 = 100 * Math.random() + 50
+      drawCloud(context, x0, y0, c0)    
+    }
+  }
+
+  function drawPrairie (ctx) {
+    ctx.save()
+
+    ctx.beginPath()
+    ctx.moveTo(0, 420)
+    ctx.bezierCurveTo(250, 300, 350, 550, 800, 400)
+    ctx.lineTo(800, 600)
+    ctx.lineTo(0, 600)
+    ctx.closePath()
+
+    var lineStyle = ctx.createLinearGradient(0, 600, 600, 9)
+    lineStyle.addColorStop(0, '#00AA58')
+    lineStyle.addColorStop(0.3, '#63AA7B')
+    lineStyle.addColorStop(1, '#04AA00')
+
+    ctx.fillStyle = lineStyle
+    ctx.fill()
+
+    ctx.restore()
+  }
+
+  function drawSky (ctx) {
+    ctx.save()
+
+    ctx.beginPath()
+    ctx.moveTo(0, 420)
+    ctx.bezierCurveTo(250, 300, 350, 550, 800, 400)
+    ctx.lineTo(800, 0)
+    ctx.lineTo(0, 0)
+    ctx.closePath()
+
+    var lineStyle = ctx.createRadialGradient(400, 0, 50, 400, 0, 200)
+    lineStyle.addColorStop(0, '#42A9AA')
+    lineStyle.addColorStop(1, '#2491AA')
+
+    ctx.fillStyle = lineStyle
+
+    ctx.fill()
+
+    ctx.restore()
+  }
+
+  /**
+   * ctx: canvas.getContext('2d') 对象
+   * cx: 云朵 X轴 位置
+   * cy: 云朵 Y轴 位置
+   * cw: 云朵宽度
+   * */
+  function drawCloud (ctx, cx, cy, cw) {
+    // 云朵移动范围即画布宽度
+    var maxWidth = 800
+
+    // 如果超过边界从头开始控制
+    cx = cx % maxWidth
+
+    // 云朵高度为宽度的 60%
+    var ch = cw * 0.6
+
+    // 开始绘制云朵
+    ctx.beginPath()
+    ctx.fillStyle = "white"
+
+    // 创建渐变
+    var grd = ctx.createLinearGradient(0, 0, 0, cy)
+    grd.addColorStop(0, 'rgba(255, 255, 255, 0.8)')
+    grd.addColorStop(1, 'rgba(255, 255, 255, 0.5)')
+    ctx.fillStyle = grd
+
+    // 在不同的位置创建 5 个圆拼接成云朵形状
+    ctx.arc(cx, cy, cw * 0.19, 0, 360, false)
+    ctx.arc(cx + cw * 0.08, cy - ch * 0.3, cw * 0.11, 0, 360, false)
+    ctx.arc(cx + cw * 0.3, cy - ch * 0.25, cw * 0.25, 0, 360, false)
+    ctx.arc(cx + cw * 0.6, cy, cw * 0.21, 0, 360, false)
+    ctx.arc(cx + cw * 0.3, cy - ch * 0.1, cw * 0.28, 0, 360, false)
+    ctx.closePath()
+
+    ctx.fill()
+  }
+</script>
+</html>
