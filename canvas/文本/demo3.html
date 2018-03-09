@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>水平对齐</title>
+  <style>
+    body { background: url("../assets/bg3.jpg") repeat; }
+    #canvas { border: 1px solid #aaa; display: block; margin: 50px auto; }
+  </style>
+</head>
+<body>
+  <div id="canvas-wrap">
+    <canvas id="canvas">
+      你的浏览器居然不支持 canvas ？ 赶紧换一个吧！！
+    </canvas>
+  </div>    
+</body>
+<script>
+  window.onload = function () {
+    var canvas = document.querySelector("#canvas")
+    canvas.width = 800
+    canvas.height = 600
+    var context = canvas.getContext("2d")
+    context.fillStyle = "#fff"
+    context.fillRect(0, 0, 800, 600)
+
+    context.strokeStyle = "blue"
+    context.moveTo(400, 100)
+    context.lineTo(400, 500)
+    context.stroke()
+
+    context.fillStyle = "#000"
+    context.font = "50px Arial"
+
+    // 显示不同的 textAlign 值
+    context.textAlign = "start"
+    context.fillText("textAlign = Start", 400, 120)
+    context.textAlign = "end"
+    context.fillText("textAlign = end", 400, 200)
+    context.textAlign = "left"
+    context.fillText("textAlign = left", 400, 280)
+    context.textAlign = "center"
+    context.fillText("textAlign = center", 400, 360)
+    context.textAlign ="right"
+    context.fillText("textAlign = right", 400, 480)    
+  }
+</script>
+</html>
