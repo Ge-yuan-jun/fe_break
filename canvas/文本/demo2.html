@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>文本渲染</title>
+  <style>
+    body { background: url("../assets/bg3.jpg") repeat; }
+    #canvas { border: 1px solid #aaa; display: block; margin: 50px auto; }
+  </style>
+</head>
+<body>
+  <div id="canvas-wrap">
+    <canvas id="canvas">
+      你的浏览器居然不支持 canvas ？ 赶紧换一个吧！！
+    </canvas>
+  </div>  
+</body>
+<script>
+  window.onload = function () {
+    var canvas = document.getElementById('canvas')
+    canvas.width = 800
+    canvas.height = 600
+    var context = canvas.getContext('2d')
+    context.fillStyle = '#fff'
+    context.fillRect(0, 0, 800, 600)
+
+    context.beginPath()
+    // 1. 使用 font 设置字体    
+    context.font = "50px Verdana"
+    var gradient = context.createLinearGradient(0, 0, 800, 0)
+    gradient.addColorStop("0", "magenta")
+    gradient.addColorStop("0.5", "blue")
+    gradient.addColorStop("1.0", "red")
+
+    context.strokeStyle = "#00AAAA"
+    context.strokeText("github.com", 50, 100)
+
+    // 2. 使用 fillStyle 设置字体颜色    
+    context.fillStyle = gradient
+    // 3. 使用 fillText 方法显示字体    
+    context.fillText("github.com", 50, 200)
+
+    // 限制宽度
+    context.fillText("github.com", 50, 300, 200)
+
+    // 文案背景
+    context.beginPath()
+    var img = new Image()
+    img.src="../assets/8-1.jpg"
+    img.onload = function () {
+      var pattern = context.createPattern(img, "repeat")
+      context.fillStyle = pattern
+      context.fillText("github.com", 50, 400)
+    }
+
+    context.beginPath()
+    context.fillStyle = "#00AAAA"
+    context.fillText("github.com", 50, 500)
+  }
+</script>
+</html>
