@@ -4,9 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>全局透明 globalAlpha</title>
+  <title>图像合成 globalCompositeOperation</title>
   <style>
-    body { background: url("../assets/bg3.jpg") repeat; }
     #canvas { border: 1px solid #aaa; display: block; margin: 50px auto; }
   </style>
 </head>
@@ -15,29 +14,29 @@
     <canvas id="canvas">
       你的浏览器居然不支持 canvas ？ 赶紧换一个吧！！
     </canvas>
-  </div> 
+  </div>   
 </body>
 <script>
   window.onload = function () {
-    var canvas = document.getElementById('canvas')
+    const canvas = document.querySelector("#canvas")
     canvas.width = 800
     canvas.height = 600
-    var context = canvas.getContext('2d')
+    const context = canvas.getContext('2d')
     context.fillStyle = '#fff'
     context.fillRect(0, 0, 800, 600)
 
-    context.globalAlpha = 0.5;
+    context.globalCompositeOperation = 'source-out'
+    context.globalAlpha = 0.5
 
-    for (var i = 0; i <= 50; i++) {
-      var R = Math.floor(Math.random() * 225)
-      var G = Math.floor(Math.random() * 225)
-      var B = Math.floor(Math.random() * 225)
+    for (var i = 0; i<= 50; i++) {
+      var R = Math.floor(Math.random() * 255)
+      var G = Math.floor(Math.random() * 255)
+      var B = Math.floor(Math.random() * 255)
 
-      context.fillStyle = "rgb(" + R + "," + G + "," + B + ")";
+      context.fillStyle = "rgb(" + R + "," + G + "," + B + ")"
 
       context.beginPath()
-      
-      context.arc(Math.random() * canvas.width, Math.random() * canvas.height, Math.random() * 100, 0, Math.PI * 2);
+      context.arc(Math.random() * canvas.width, Math.random() * canvas.height, Math.random() * 100, 0, Math.PI * 2)
 
       context.fill()
     }
