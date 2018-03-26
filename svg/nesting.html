@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>嵌套 svg</title>
+</head>
+<body>
+  <svg xmlns="http://www.w3.org/2000/svg"
+      xmlns="http://www.w3.org/1999/xlink">
+    
+    <!-- 外层的svg元素有不同的x值。由于矩形的x位置相对于其外层的svg元素的x位置，所以两个矩形在不同的x坐标 -->
+    <svg x="10">
+      <rect x="10" y="10" height="100" width="100" style="stroke:#ff0000; fill: #0000ff"/>
+    </svg>
+
+    <svg x="200">
+      <rect x="10" y="10" height="100" width="100" style="stroke: #ff0000; fill: #00cc00"/>
+    </svg>
+  </svg>
+</body>
+</html>
