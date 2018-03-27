@@ -7,6 +7,22 @@
   <title>tref</title>
 </head>
 <body>
-  
+  <!-- chrome 不支持此写法 -->
+  <svg xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink">
+
+    <defs>
+      <text id="theText">A text that is referenced</text>
+    </defs>
+
+    <text x="20" y="10">
+      <tref xlink:href="#theText" />
+    </text>
+
+    <text x="30" y="30">
+      <tref xlink:href="#theText" />
+    </text>
+    
+  </svg>
 </body>
 </html>
