@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>tspan</title>
+</head>
+<body>
+  <svg xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink">
+  
+    <text x="20" y="15">
+      <tspan>tspan line 1</tspan>
+      <tspan>tspan line 2</tspan>
+    </text>
+  </svg>
+
+  <!-- 垂直定位 -->
+  <svg xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink">
+  
+    <text x="20" y="15">
+      <tspan>tspan line 1</tspan>
+      <tspan dy="10">tspan line 2</tspan>
+    </text>
+
+    <text x="40" y="35">
+        <tspan dy="5 10 20">123</tspan>
+      </text>
+  </svg>
+
+  <!-- 水平定位 -->
+  <svg xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink">
+  
+    <text x="20" y="15">
+      <tspan>tspan line 1</tspan>
+      <tspan dx="30" dy="10">tspan line 2</tspan>
+    </text>
+
+    <text x="10" y="40">
+        <tspan dx="5 10 20">123</tspan>
+    </text>
+
+    <text x="10" y="80">
+      Here is a <tspan style="font-weight: bold;">bold</tspan> word.
+    </text>
+  </svg>
+
+  <svg xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink">
+  
+    <text x="10" y="20">
+      Here is a text with <tspan style="baseline-shift: super;">superscript</tspan>
+      and <tspan style="baseline-shift: sub;">subscript</tspan> mixed with normal text.
+    </text>
+  
+  </svg>
+</body>
+</html>

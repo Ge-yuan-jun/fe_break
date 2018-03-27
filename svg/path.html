@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>path</title>
+  <style>
+    .auto-close {
+      width: 500px;
+      height: 500px;
+    }
+  </style>
+</head>
+<body>
+  <svg xmlns="http://www.w3.org/2000/svg"
+      xmlns:xlink="http://www.w3.org/1999/xlink">
+    
+    <!-- 绘制的第一个圆弧是黄色弧。large-arc-flag被设置为0表示将绘制较小的弧。sweep-flag也被设置为0表示圆弧非镜像版 -->
+    <path d="M40,20 A30,30 0 0,0 60,70" style="stroke: #cccc00; stroke-width: 2; fill: none"/>  
+
+    <!-- 第二个圆弧是红色弧。large-arc-flag被设置为1表示绘制从点40,20到点60,70之间的两个可能的圆弧中较大的那个 -->
+    <path d="M40,20 A30,30 0 1,0 60,70" style="stroke: #ff0000; stroke-width: 2; fill: none"/>
+
+    <!-- 镜像版红色弧 -->
+    <path d="M40,20 A30,30 0 1,1 60,70" style="stroke: #00ff00; stroke-width: 2; fill: none"/>
+
+    <!-- 镜像版黄色弧线 -->
+    <path d="M40,20 A30,30 0 0,1 60,70" style="stroke: #0000ff; stroke-width: 2; fill: none"/>
+  </svg>
+
+  <!-- 二次贝塞尔曲线 -->
+  <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <path d="M50,50 Q50,200 100,100" style="stroke: #006666; fill: none;"/>
+  </svg>
+
+  <!-- 三次贝塞尔曲线 -->
+  <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <path d="M50,50 C75,80 125,20 150,50" style="stroke: #006666; fill: none;"/>
+  </svg>
+
+  <svg class="auto-close" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <path d="M100,100
+        L150,100
+        a50,25 0 0,0 150,100
+        q50,-50 70,-170
+        Z"
+      style="stroke: #006666; fill: none;"/>
+  </svg>
+
+  <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <path d="M0,0 L30,60 L0,120" style="stroke: #0000ff; fill: none;" />
+    <path d="M10,0 L40,60 L10,120" style="stroke: #0000ff; fill: none;" />
+  </svg>
+</body>
+</html>

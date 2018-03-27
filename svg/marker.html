@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>marker</title>
+</head>
+<body>
+  <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <defs>
+      <marker id="markerCircle" markerWidth="8" markerHeight="8" refX="5" refY="5">
+        <circle cx="5" cy="5" r="3" style="stroke: none; fill: #000000;"/>
+      </marker>
+
+      <marker id="markerArrow" markerWidth="13" markerHeight="13" refX="2" refY="6" orient="auto">
+        <path d="M2,2 L2,11 L10,6 L2,2" style="fill: #000000;"/>
+      </marker>
+    </defs>
+
+    <path d="M100,10 L150,10 L150,60"
+      style="stroke: #6666ff; stroke-width: 1px; fill: none;
+        marker-start: url(#markerCircle);
+        marker-end: url(#markerArrow)"/>
+  </svg>
+</body>
+</html>
