@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>textpath 元素</title>
+</head>
+<body>
+  <svg xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink">
+  
+    <defs>
+      <path id="myTextPath"
+        d="M75, 20 a1,1 0 0,0 100,0"/>
+    </defs>
+
+    <text x="10" y="100" style="stroke: #000000;">
+      <textpath xlink:href="#myTextPath">
+        Text along a curved path...
+      </textpath>
+    </text>
+
+  </svg>
+
+  <svg xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink">
+  
+    <defs>
+      <path id="myTextPath2"
+        d="M75,20 l100,0 l100,30 q0,100 150,100"/>
+    </defs>
+
+    <text x="10" y="100" style="stroke: #000000;">
+      <textpath xlink:href="#myTextPath2">
+        Text along a more advanced path with lines and curves.
+      </textpath>
+    </text>
+
+  </svg>
+</body>
+</html>
