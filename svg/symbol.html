@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>symbol</title>
+</head>
+<body>
+  <style>
+    circle.myGreen {
+      stroke: #006600;
+      fill: #00cc00;
+    }
+  </style>
+  <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="500" height="100">
+    <symbol id="shape2">
+      <circle class="myGreen" cx="25" cy="25" r="25"/>
+      <circle class="myRed" cx="125" cy="25" r="25"/>
+    </symbol>
+
+    <use xlink:href="#shape2" x="50" y="25"></use>
+  </svg>
+</body>
+</html>

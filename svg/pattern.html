@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>pattern 填充</title>
+</head>
+<body>
+  <svg xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink">
+  
+    <defs>
+        <pattern id="innerPattern"
+          x="3" y="3" width="9" height="9"
+          patternUnits="userSpaceOnUse"
+        >
+          <rect x="0" y="0" width="6" height="6"
+            style="stroke: none; fill: #ff0000;" />
+
+        </pattern>
+
+        <pattern id="outerPattern"
+          x="12" y="12" width="25" height="25"
+          patternUnits="userSpaceOnUse"
+          patternTransform="rotate(35)"
+        >
+
+          <circle cx="10" cy="10" r="10"
+            style="stroke: #0000ff; fill: url(#innerPattern)" />
+
+        </pattern>
+    </defs>
+      
+      <rect x="10" y="10" width="100" height="100"
+        style="stroke: #000000; fill: url(#outerPattern);" />
+  </svg>
+</body>
+</html>
