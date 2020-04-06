@@ -2,7 +2,7 @@
  * @Author: Ge.Yuanjun 
  * @Date: 2020-04-07 01:21:44 
  * @Last Modified by: Ge.Yuanjun
- * @Last Modified time: 2020-04-07 01:26:11
+ * @Last Modified time: 2020-04-07 01:54:30
  */
 
 // 简洁版
@@ -52,14 +52,16 @@ export default function add(a, b) {
  * @param {*} b 
  */
 export function largeNumSum (a, b) {
+  // 实现该函数
   let c = 0
   let res = ''
-  a = a.split()
-  b = b.split()
-  
+  a = a.split('')
+  b = b.split('')
+
   while (a.length || b.length || c) {
     c += ~~a.pop() + ~~b.pop() // boolean 型变量c会存在类型转换（true -> 1, false -> 0）
-    res += c % 10
-    c = c > 9 // c 在此处重置未 boolean 型变量 
+    res = c % 10 + res // 不可以使用 res += c % 10，里面涉及相加的数据类型转换
+    c = c > 9 // c 在此处重置未 boolean 型变量
   }
+  return res.replace(/^0+/, '') // 如果是 0 + ‘0’这一特殊情况，会生成 ‘00’
 }
