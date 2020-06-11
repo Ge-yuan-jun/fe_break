@@ -1,0 +1,18 @@
+{
+  "name": "lrucache",
+  "version": "0.0.1",
+  "description": "lru cache algorithm",
+  "main": "LRUCache.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "lru",
+    "cache"
+  ],
+  "author": "geyuanjun",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^26.0.1"
+  }
+}
