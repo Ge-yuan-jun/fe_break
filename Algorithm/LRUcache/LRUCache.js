@@ -33,7 +33,6 @@ class LRUCache {
     if (entry === this.newest) {
       return
     }
-    console.log('entry', entry)
     // 处理链表元素前置指向
     if (entry[NEWER]) {
       // 边界条件：尾部元素
@@ -106,15 +105,11 @@ class LRUCache {
   /** 获取数据在缓存中是否存在，存在则提到链表头部 */
   get (key) {
     const entry = this.keyMap.get(key)
-    console.log('entry', entry)
     if (entry === undefined) return -1
     this.markEntryAsUsed(entry)
     return entry.value
   }
 }
 
-let cache = new LRUCache(3)
-cache.put(1, 1)
-cache.put(2, 2)
-cache.put(3, 3)
-console.log('get 1', cache.get(1))
+module.exports = LRUCache
+// export default LRUCache
