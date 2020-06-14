@@ -3,13 +3,13 @@
  * 前置指针 NEWER
  * 后置指针 OLDER
  * @class LRUCache
- * TODO: LRU 算法错误
  */
 
+ // 定义链表前后指针
 const NEWER = Symbol('newer')
 const OLDER = Symbol('older')
 
-// 链表元素设置
+// 初始化链表元素
 class Entry {
   constructor (key, value) {
     this.key = key
@@ -83,6 +83,7 @@ class LRUCache {
     // 处理 key 值已在链表中存在
     if (entry) {
       entry.value = value
+      // markEntryAsUsed：重新排列链表元素
       this.markEntryAsUsed(entry)
       return
     }
@@ -97,6 +98,7 @@ class LRUCache {
 
     this.newest = entry
     this.size++
+    // 超出链表长度，则删除链表尾部元素
     if (this.size > this.limit) {
       this.shift()
     }
