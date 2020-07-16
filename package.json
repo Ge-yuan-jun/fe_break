@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/Ge-yuan-jun/fe_break/issues"
   },
-  "homepage": "https://github.com/Ge-yuan-jun/fe_break#readme"
+  "homepage": "https://github.com/Ge-yuan-jun/fe_break#readme",
+  "devDependencies": {
+    "jest": "^26.1.0"
+  }
 }
