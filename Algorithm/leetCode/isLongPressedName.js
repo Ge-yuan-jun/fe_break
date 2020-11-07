@@ -13,14 +13,15 @@ var isLongPressedName = function(name, typed) {
     // 如果当前序列字符相等，则继续比对 typed 的下一个字符 
     if (typed[typedPointer] === name[namePointer]) {
       typedPointer++
-    } else {
       namePointer++
+    } else if (typedPointer > 0 && typed[typedPointer] === typed[typedPointer-1]){
+      typedPointer++
+    } else {
+      return false
     }
   }
-  if (namePointer !== name.length -1 && typedPointer !== typedPointer.length -1) {
-    return false
-  } 
-  return true
+
+  return namePointer === name.length
 };
 
 console.log(isLongPressedName('alex', 'aaleex'))
