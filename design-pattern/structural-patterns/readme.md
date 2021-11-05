@@ -6,9 +6,9 @@
 
 ### 分类
 
-- 代理模式
+- [代理模式](https://github.com/Ge-yuan-jun/fe_break/blob/master/design-pattern/structural-patterns/Proxy.ts)
 
-- 桥接模式
+- [桥接模式](https://github.com/Ge-yuan-jun/fe_break/blob/master/design-pattern/structural-patterns/Bridge.ts)
 
 - 装饰器模式
 
