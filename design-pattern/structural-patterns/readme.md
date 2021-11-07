@@ -10,7 +10,7 @@
 
 - [桥接模式](https://github.com/Ge-yuan-jun/fe_break/blob/master/design-pattern/structural-patterns/Bridge.ts)
 
-- 装饰器模式
+- [装饰器模式](https://github.com/Ge-yuan-jun/fe_break/blob/master/design-pattern/structural-patterns/Decorator.ts)
 
 - 适配器模式
 
